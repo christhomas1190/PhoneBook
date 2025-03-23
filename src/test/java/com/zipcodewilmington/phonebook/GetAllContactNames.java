@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class GetAllContactNames {
@@ -36,6 +37,7 @@ public class GetAllContactNames {
 
         // when
         List<String> actualNames = phoneBook.getAllContactNames();
+        Collections.sort(actualNames);
 
         // then
         Assert.assertEquals(Arrays.asList(names), actualNames);

@@ -11,8 +11,8 @@ public class Person {
         this.name=name;
         this.phoneNumbers = new ArrayList<>();
     }
-    public void addPhoneNumbers(String number, String type){
-        phoneNumbers.add(new PhoneNumbers());
+    public void addPhoneNumbers(String number){
+        phoneNumbers.add(new PhoneNumbers(number));
     }
 
     public String getName() {

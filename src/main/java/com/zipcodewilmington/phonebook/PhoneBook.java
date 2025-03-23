@@ -1,54 +1,71 @@
 package com.zipcodewilmington.phonebook;
 
-import java.util.List;
-import java.util.ArrayList;
+import java.util.*;
 //import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.Map;
+
 
 /**
  * Created by leon on 1/23/18.
  * Made WAY better by kristofer 6/16/20
  */
 public class PhoneBook {
+    private Map<String,Person>contacts;
 
-    private final Map<String, List<String>> phonebook;
-
-    public PhoneBook(Map<String, List<String>> map) {
-        this.phonebook = null;
+    public PhoneBook(){
+        this.contacts= new HashMap<>();
     }
 
-    public PhoneBook() {
-        this(null);
-    }
-
-    public void add(String name, String phoneNumber) {
+    public void add(String name, String number) {
+        contacts.putIfAbsent(name, new Person(name));
+        contacts.get(name).addPhoneNumbers(number);
     }
 
     public void addAll(String name, String... phoneNumbers) {
+        contacts.putIfAbsent(name,new  Person(name));
+        Person person=contacts.get(name);
+        for(String number : phoneNumbers){
+            person.addPhoneNumbers(number);
+        }
     }
 
     public void remove(String name) {
+        contacts.remove(name);
     }
 
-    public Boolean hasEntry(String name) {
-        return null;
+    public Boolean hasEntry(String name, String phoneNumber) {
+        return contacts.containsKey(name);
     }
 
     public List<String> lookup(String name) {
-        return null;
+        contacts.getOrDefault(name, new Person(name));
+        Person person=contacts.get(name);
+        if(person==null){
+            new ArrayList<>();
+        }
+        List<String> numbers = new ArrayList<>();
+        for(PhoneNumbers phone: person.getPhoneNumbers()){
+            numbers.add(phone.getNumber());
+        }
+        return numbers;
     }
 
     public String reverseLookup(String phoneNumber)  {
+        for(Map.Entry<String, Person> entry:contacts.entrySet()){
+            Person person =entry.getValue();
+            for(PhoneNumbers phone: person.getPhoneNumbers()){
+                if(phone.getNumber().equals(phoneNumber))
+                return entry.getKey();
+            }
+        }
+
         return null;
     }
 
     public List<String> getAllContactNames() {
-        return null;
+        return new ArrayList<>(contacts.keySet());
     }
 
-    public Map<String, List<String>> getMap() {
-        return null;
+    public Map<String, Person> getMap() {
+        return contacts;
     }
 }

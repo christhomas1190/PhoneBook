@@ -3,10 +3,14 @@ package com.zipcodewilmington.phonebook;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.List;
+import java.util.Map;
+
 public class ReverseLookupTest {
     @Test
     public void test1() {
         // given
+        Map<String, List<String>> dependency = Map.of();
         PhoneBook phoneBook = new PhoneBook();
         String expectedName = "John";
         String phoneNumber = "302-555-4545";
@@ -23,6 +27,7 @@ public class ReverseLookupTest {
     @Test
     public void test2() {
         // given
+        Map<String, List<String>> dependency = Map.of();
         PhoneBook phoneBook = new PhoneBook();
         String expectedName = "Joe";
         String phoneNumber = "302-554-4545";

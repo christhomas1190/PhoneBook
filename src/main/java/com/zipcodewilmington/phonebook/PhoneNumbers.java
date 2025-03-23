@@ -1,12 +1,12 @@
 package com.zipcodewilmington.phonebook;
 
     public class PhoneNumbers {
-    String number;
-    String type;
+        private String number;
+        private String type;
 
 
 
-        void PhoneNumbers(String number, String type){
+        public PhoneNumbers(String number){
         this.number=number;
         this.type=type;
     }
@@ -19,8 +19,8 @@ package com.zipcodewilmington.phonebook;
             return type;
         }
 
-        public void setName(String name) {
-            number = number;
+        public void setNumber(String number) {
+            this.number = number;
         }
 
         public void setType(String type) {
